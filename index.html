@@ -10,7 +10,15 @@
 
 <h1>Khmer NiDA Keyboard Typing Game</h1>
 
-<textarea id="typing-area" spellcheck="false" autofocus placeholder="Type Khmer here..."></textarea>
+<div id="game-container">
+  <div id="target-text" class="target-text"></div>
+  <textarea id="user-input" spellcheck="false" placeholder="Type the sentence here..."></textarea>
+  <div class="stats">
+    Speed: <span id="speed">0</span> WPM |
+    Accuracy: <span id="accuracy">100</span>%
+  </div>
+  <button id="restart-btn">Restart</button>
+</div>
 
 <div id="keyboard">
   <!-- Row 1 -->
@@ -35,7 +43,7 @@
     <div class="key" data-normal="ង" data-shift=">" data-alt=""> <span class="alt-char"></span><span class="normal-char">ង</span><span class="shift-char">&gt;</span></div>
     <div class="key" data-normal="ច" data-shift="?" data-alt=""> <span class="alt-char"></span><span class="normal-char">ច</span><span class="shift-char">?</span></div>
     <div class="key" data-normal="ឆ" data-shift=":" data-alt=""> <span class="alt-char"></span><span class="normal-char">ឆ</span><span class="shift-char">:</span></div>
-    <div class="key" data-normal="ជ" data-shift="\"" data-alt=""> <span class="alt-char"></span><span class="normal-char">ជ</span><span class="shift-char">"</span></div>
+    <div class="key" data-normal="ជ" data-shift="&quot;" data-alt=""> <span class="alt-char"></span><span class="normal-char">ជ</span><span class="shift-char">"</span></div>
     <div class="key" data-normal="ញ" data-shift="'" data-alt=""> <span class="alt-char"></span><span class="normal-char">ញ</span><span class="shift-char">'</span></div>
     <div class="key" data-normal="ដ" data-shift="-" data-alt=""> <span class="alt-char"></span><span class="normal-char">ដ</span><span class="shift-char">-</span></div>
     <div class="key" data-normal="ឋ" data-shift="_" data-alt=""> <span class="alt-char"></span><span class="normal-char">ឋ</span><span class="shift-char">_</span></div>
