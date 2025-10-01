@@ -3,74 +3,375 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Khmer NiDA Keyboard Typing Game</title>
-<link rel="stylesheet" href="style.css" />
+<title>Khmer NiDA Keyboard Typing Game - Full Keyboard</title>
+<style>
+  body {
+    font-family: "Khmer OS", serif, monospace;
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  #target-text {
+    font-size: 24px;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    user-select: none;
+  }
+  #user-input {
+    width: 100%;
+    height: 120px;
+    font-size: 22px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: "Khmer OS", serif, monospace;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+  }
+  #user-input.error {
+    border-color: red;
+    box-shadow: 0 0 5px red;
+  }
+  #stats {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  #keyboard {
+    margin-top: 20px;
+    background: #eee;
+    border-radius: 12px;
+    padding: 15px 20px;
+    user-select: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  .keyboard-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .key {
+    background: white;
+    border-radius: 6px;
+    border: 1.5px solid #bbb;
+    box-shadow: inset 0 -1px 0 #ccc;
+    margin: 0 4px;
+    min-width: 42px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    position: relative;
+    cursor: default;
+    font-size: 20px;
+    color: #333;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .key.wide {
+    min-width: 80px;
+  }
+  .key.extra-wide {
+    min-width: 140px;
+  }
+  .key.space {
+    min-width: 320px;
+  }
+  .key.highlight {
+    background-color: #0055cc;
+    border-color: #003d99;
+    color: white;
+    box-shadow: 0 0 8px #0055cc;
+  }
+  .shift-char {
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    font-size: 14px;
+    color: #666;
+    user-select: none;
+  }
+  .alt-char {
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    font-size: 14px;
+    color: #666;
+    user-select: none;
+  }
+</style>
 </head>
 <body>
 
 <h1>Khmer NiDA Keyboard Typing Game</h1>
 
-<div id="game-container">
-  <div id="target-text" class="target-text"></div>
-  <textarea id="user-input" spellcheck="false" placeholder="Type the sentence here..."></textarea>
-  <div class="stats">
-    Speed: <span id="speed">0</span> WPM |
-    Accuracy: <span id="accuracy">100</span>%
-  </div>
-  <button id="restart-btn">Restart</button>
+<div id="target-text">Loading sentence...</div>
+<textarea id="user-input" spellcheck="false" placeholder="Start typing here..."></textarea>
+
+<div id="stats">
+  Speed: <span id="speed">0</span> WPM | Accuracy: <span id="accuracy">100</span>% | Sentences done: <span id="sentences-done">0</span>
 </div>
 
 <div id="keyboard">
   <!-- Row 1 -->
   <div class="keyboard-row">
-    <div class="key" data-normal="១" data-shift="!" data-alt=""> <span class="alt-char"></span><span class="normal-char">១</span><span class="shift-char">!</span></div>
-    <div class="key" data-normal="២" data-shift="@" data-alt=""> <span class="alt-char"></span><span class="normal-char">២</span><span class="shift-char">@</span></div>
-    <div class="key" data-normal="៣" data-shift="#" data-alt=""> <span class="alt-char"></span><span class="normal-char">៣</span><span class="shift-char">#</span></div>
-    <div class="key" data-normal="៤" data-shift="$" data-alt=""> <span class="alt-char"></span><span class="normal-char">៤</span><span class="shift-char">$</span></div>
-    <div class="key" data-normal="៥" data-shift="%" data-alt=""> <span class="alt-char"></span><span class="normal-char">៥</span><span class="shift-char">%</span></div>
-    <div class="key" data-normal="៦" data-shift="^" data-alt=""> <span class="alt-char"></span><span class="normal-char">៦</span><span class="shift-char">^</span></div>
-    <div class="key" data-normal="៧" data-shift="&amp;" data-alt=""> <span class="alt-char"></span><span class="normal-char">៧</span><span class="shift-char">&amp;</span></div>
-    <div class="key" data-normal="៨" data-shift="*" data-alt=""> <span class="alt-char"></span><span class="normal-char">៨</span><span class="shift-char">*</span></div>
-    <div class="key" data-normal="៩" data-shift="(" data-alt=""> <span class="alt-char"></span><span class="normal-char">៩</span><span class="shift-char">(</span></div>
-    <div class="key" data-normal="០" data-shift=")" data-alt=""> <span class="alt-char"></span><span class="normal-char">០</span><span class="shift-char">)</span></div>
-    <div class="key backspace" data-normal="Backspace" data-shift="" data-alt="">⌫</div>
+    <div class="key" data-normal="៥" data-shift="%" data-alt="៕">៥
+      <div class="shift-char">%</div>
+      <div class="alt-char">៕</div>
+    </div>
+    <div class="key" data-normal="២" data-shift="᠒" data-alt="។">២
+      <div class="shift-char">᠒</div>
+      <div class="alt-char">។</div>
+    </div>
+    <div class="key" data-normal="៣" data-shift="᠓" data-alt="៘">៣
+      <div class="shift-char">᠓</div>
+      <div class="alt-char">៘</div>
+    </div>
+    <div class="key" data-normal="៤" data-shift="᠔" data-alt="៙">៤
+      <div class="shift-char">᠔</div>
+      <div class="alt-char">៙</div>
+    </div>
+    <div class="key" data-normal="៦" data-shift="᠕" data-alt="៚">៦
+      <div class="shift-char">᠕</div>
+      <div class="alt-char">៚</div>
+    </div>
+    <div class="key" data-normal="៧" data-shift="᠖" data-alt="៛">៧
+      <div class="shift-char">᠖</div>
+      <div class="alt-char">៛</div>
+    </div>
+    <div class="key" data-normal="៨" data-shift="᠗" data-alt="ៜ">៨
+      <div class="shift-char">᠗</div>
+      <div class="alt-char">ៜ</div>
+    </div>
+    <div class="key" data-normal="៩" data-shift="᠘" data-alt="៝">៩
+      <div class="shift-char">᠘</div>
+      <div class="alt-char">៝</div>
+    </div>
+    <div class="key" data-normal="០" data-shift="᠙" data-alt="៞">០
+      <div class="shift-char">᠙</div>
+      <div class="alt-char">៞</div>
+    </div>
   </div>
 
   <!-- Row 2 -->
   <div class="keyboard-row">
-    <div class="key" data-normal="ៗ" data-shift="~" data-alt=""> <span class="alt-char"></span><span class="normal-char">ៗ</span><span class="shift-char">~</span></div>
-    <div class="key" data-normal="្" data-shift="&lt;" data-alt=""> <span class="alt-char"></span><span class="normal-char">្</span><span class="shift-char">&lt;</span></div>
-    <div class="key" data-normal="ង" data-shift=">" data-alt=""> <span class="alt-char"></span><span class="normal-char">ង</span><span class="shift-char">&gt;</span></div>
-    <div class="key" data-normal="ច" data-shift="?" data-alt=""> <span class="alt-char"></span><span class="normal-char">ច</span><span class="shift-char">?</span></div>
-    <div class="key" data-normal="ឆ" data-shift=":" data-alt=""> <span class="alt-char"></span><span class="normal-char">ឆ</span><span class="shift-char">:</span></div>
-    <div class="key" data-normal="ជ" data-shift="&quot;" data-alt=""> <span class="alt-char"></span><span class="normal-char">ជ</span><span class="shift-char">"</span></div>
-    <div class="key" data-normal="ញ" data-shift="'" data-alt=""> <span class="alt-char"></span><span class="normal-char">ញ</span><span class="shift-char">'</span></div>
-    <div class="key" data-normal="ដ" data-shift="-" data-alt=""> <span class="alt-char"></span><span class="normal-char">ដ</span><span class="shift-char">-</span></div>
-    <div class="key" data-normal="ឋ" data-shift="_" data-alt=""> <span class="alt-char"></span><span class="normal-char">ឋ</span><span class="shift-char">_</span></div>
-    <div class="key" data-normal="ឌ" data-shift="=" data-alt=""> <span class="alt-char"></span><span class="normal-char">ឌ</span><span class="shift-char">=</span></div>
-    <div class="key enter" data-normal="Enter" data-shift="" data-alt="">⏎</div>
+    <div class="key" data-normal="៉" data-shift="៊" data-alt="ឯ">៉
+      <div class="shift-char">៊</div>
+      <div class="alt-char">ឯ</div>
+    </div>
+    <div class="key" data-normal="ិ" data-shift="ី" data-alt="ឲ">ិ
+      <div class="shift-char">ី</div>
+      <div class="alt-char">ឲ</div>
+    </div>
+    <div class="key" data-normal="ឺ" data-shift="ុ" data-alt="ឳ">ឺ
+      <div class="shift-char">ុ</div>
+      <div class="alt-char">ឳ</div>
+    </div>
+    <div class="key" data-normal="ុ" data-shift="ួ" data-alt="ឬ">ុ
+      <div class="shift-char">ួ</div>
+      <div class="alt-char">ឬ</div>
+    </div>
+    <div class="key" data-normal="ួ" data-shift="េ" data-alt="ឭ">ួ
+      <div class="shift-char">េ</div>
+      <div class="alt-char">ឭ</div>
+    </div>
+    <div class="key" data-normal="េ" data-shift="ែ" data-alt="ឮ">េ
+      <div class="shift-char">ែ</div>
+      <div class="alt-char">ឮ</div>
+    </div>
+    <div class="key" data-normal="ែ" data-shift="ៃ" data-alt="ឯ">ែ
+      <div class="shift-char">ៃ</div>
+      <div class="alt-char">ឯ</div>
+    </div>
+    <div class="key" data-normal="ៃ" data-shift="ោ" data-alt="ឰ">ៃ
+      <div class="shift-char">ោ</div>
+      <div class="alt-char">ឰ</div>
+    </div>
+    <div class="key" data-normal="ោ" data-shift="ៅ" data-alt="ឱ">ោ
+      <div class="shift-char">ៅ</div>
+      <div class="alt-char">ឱ</div>
+    </div>
+    <div class="key" data-normal="ៅ" data-shift="ះ" data-alt="ឲ">ៅ
+      <div class="shift-char">ះ</div>
+      <div class="alt-char">ឲ</div>
+    </div>
   </div>
 
   <!-- Row 3 -->
   <div class="keyboard-row">
-    <div class="key" data-normal="ត" data-shift="{" data-alt=""> <span class="alt-char"></span><span class="normal-char">ត</span><span class="shift-char">{</span></div>
-    <div class="key" data-normal="ថ" data-shift="}" data-alt=""> <span class="alt-char"></span><span class="normal-char">ថ</span><span class="shift-char">}</span></div>
-    <div class="key" data-normal="ថ" data-shift="|" data-alt=""> <span class="alt-char"></span><span class="normal-char">ថ</span><span class="shift-char">|</span></div>
-    <div class="key" data-normal="ន" data-shift=";" data-alt=""> <span class="alt-char"></span><span class="normal-char">ន</span><span class="shift-char">;</span></div>
-    <div class="key" data-normal="ប" data-shift=":" data-alt=""> <span class="alt-char"></span><span class="normal-char">ប</span><span class="shift-char">:</span></div>
-    <div class="key" data-normal="ផ" data-shift="," data-alt=""> <span class="alt-char"></span><span class="normal-char">ផ</span><span class="shift-char">,</span></div>
-    <div class="key" data-normal="ព" data-shift="." data-alt=""> <span class="alt-char"></span><span class="normal-char">ព</span><span class="shift-char">.</span></div>
-    <div class="key" data-normal="ភ" data-shift="/" data-alt=""> <span class="alt-char"></span><span class="normal-char">ភ</span><span class="shift-char">/</span></div>
-    <div class="key" data-normal="ហ" data-shift="?" data-alt=""> <span class="alt-char"></span><span class="normal-char">ហ</span><span class="shift-char">?</span></div>
-    <div class="key" data-normal="អ" data-shift="~" data-alt=""> <span class="alt-char"></span><span class="normal-char">អ</span><span class="shift-char">~</span></div>
+    <div class="key" data-normal="ក" data-shift="ខ" data-alt="គ">ក
+      <div class="shift-char">ខ</div>
+      <div class="alt-char">គ</div>
+    </div>
+    <div class="key" data-normal="ឃ" data-shift="ង" data-alt="ច">ឃ
+      <div class="shift-char">ង</div>
+      <div class="alt-char">ច</div>
+    </div>
+    <div class="key" data-normal="ជ" data-shift="ឈ" data-alt="ញ">ជ
+      <div class="shift-char">ឈ</div>
+      <div class="alt-char">ញ</div>
+    </div>
+    <div class="key" data-normal="ដ" data-shift="ឋ" data-alt="ឌ">ដ
+      <div class="shift-char">ឋ</div>
+      <div class="alt-char">ឌ</div>
+    </div>
+    <div class="key" data-normal="ឍ" data-shift="ណ" data-alt="ត">ឍ
+      <div class="shift-char">ណ</div>
+      <div class="alt-char">ត</div>
+    </div>
+    <div class="key" data-normal="ថ" data-shift="ទ" data-alt="ធ">ថ
+      <div class="shift-char">ទ</div>
+      <div class="alt-char">ធ</div>
+    </div>
+    <div class="key" data-normal="ន" data-shift="ប" data-alt="ផ">ន
+      <div class="shift-char">ប</div>
+      <div class="alt-char">ផ</div>
+    </div>
+    <div class="key" data-normal="ព" data-shift="ភ" data-alt="ម">ព
+      <div class="shift-char">ភ</div>
+      <div class="alt-char">ម</div>
+    </div>
+    <div class="key" data-normal="យ" data-shift="រ" data-alt="ល">យ
+      <div class="shift-char">រ</div>
+      <div class="alt-char">ល</div>
+    </div>
+    <div class="key" data-normal="វ" data-shift="ស" data-alt="ហ">វ
+      <div class="shift-char">ស</div>
+      <div class="alt-char">ហ</div>
+    </div>
   </div>
 
   <!-- Row 4 -->
   <div class="keyboard-row">
-    <div class="key space" data-normal=" " data-shift="" data-alt="">Space</div>
+    <div class="key wide" data-normal="។" data-shift="៕" data-alt="៎">។ 
+      <div class="shift-char">៕</div>
+      <div class="alt-char">៎</div>
+    </div>
+    <div class="key wide" data-normal="៝" data-shift="៞" data-alt="៟">៝
+      <div class="shift-char">៞</div>
+      <div class="alt-char">៟</div>
+    </div>
+    <div class="key space" data-normal=" ">Space</div>
+    <div class="key wide" data-normal="៛" data-shift="ៜ" data-alt="៚">៛
+      <div class="shift-char">ៜ</div>
+      <div class="alt-char">៚</div>
+    </div>
+    <div class="key wide" data-normal="៖" data-shift="៙" data-alt="៘">៖
+      <div class="shift-char">៙</div>
+      <div class="alt-char">៘</div>
+    </div>
   </div>
 </div>
 
-<script src="app.js"></script>
+<script>
+  // Typing game core data
+  const sentences = [
+    "ខ្ញុំស្រឡាញ់ភាសាខ្មែរ។",
+    "សូមស្វាគមន៍មកកាន់ហ្គេមវាយអក្សរ។",
+    "វាយអក្សរឱ្យត្រឹមត្រូវ!",
+  ];
+
+  let currentText = "";
+  let startTime = null;
+  let sentencesDone = 0;
+
+  const targetTextEl = document.getElementById("target-text");
+  const userInputEl = document.getElementById("user-input");
+  const speedEl = document.getElementById("speed");
+  const accuracyEl = document.getElementById("accuracy");
+  const sentencesDoneEl = document.getElementById("sentences-done");
+
+  // Normalize string helper for Khmer combining chars (optional, for better matching)
+  // For now, we’ll match exact chars, but may extend if needed
+
+  function startGame() {
+    const randomIndex = Math.floor(Math.random() * sentences.length);
+    currentText = sentences[randomIndex];
+    targetTextEl.innerText = currentText;
+    userInputEl.value = "";
+    speedEl.innerText = "0";
+    accuracyEl.innerText = "100";
+    startTime = null;
+    highlightNextKey(currentText[0]);
+    userInputEl.classList.remove("error");
+    userInputEl.focus();
+  }
+
+  function highlightNextKey(nextChar) {
+    document.querySelectorAll(".key").forEach(k => k.classList.remove("highlight"));
+
+    if (!nextChar) return;
+
+    // Handle space key highlight
+    if (nextChar === " ") {
+      const spaceKey = document.querySelector(".key.space");
+      if (spaceKey) spaceKey.classList.add("highlight");
+      return;
+    }
+
+    // Find key with data-normal, data-shift or data-alt matching nextChar
+    const keys = Array.from(document.querySelectorAll(".key"));
+    for (const key of keys) {
+      if (
+        key.dataset.normal === nextChar ||
+        key.dataset.shift === nextChar ||
+        key.dataset.alt === nextChar
+      ) {
+        key.classList.add("highlight");
+        break;
+      }
+    }
+  }
+
+  // Sound effects
+  const keySound = new Audio("https://actions.google.com/sounds/v1/keyboard/keyboard_click.ogg");
+  const errorSound = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
+
+  userInputEl.addEventListener("input", () => {
+    const input = userInputEl.value;
+    if (!startTime) startTime = new Date();
+
+    // Check correctness & highlight errors
+    let correctChars = 0;
+    let hasError = false;
+
+    for (let i = 0; i < input.length; i++) {
+      if (input[i] === currentText[i]) {
+        correctChars++;
+      } else {
+        hasError = true;
+      }
+    }
+
+    // Play key sound on each input (except backspace)
+    if (!hasError && input.length > 0) keySound.play();
+
+    if (hasError) {
+      userInputEl.classList.add("error");
+      errorSound.play();
+    } else {
+      userInputEl.classList.remove("error");
+    }
+
+    // Calculate accuracy and speed
+    const accuracy = (correctChars / input.length) * 100 || 0;
+    const elapsedMinutes = (new Date() - startTime) / 1000 / 60;
+    const wpm = (correctChars / 5) / elapsedMinutes || 0;
+
+    accuracyEl.innerText = accuracy.toFixed(0);
+    speedEl.innerText = wpm.toFixed(0);
+
+    // Highlight next key or reset if done
+    if (input === currentText) {
+      sentencesDone++;
+      sentencesDoneEl.innerText = sentencesDone;
+      setTimeout(startGame, 1500);
+    } else {
+      highlightNextKey(currentText[input.length]);
+    }
+  });
+
+  startGame();
+</script>
+
 </body>
 </html>
