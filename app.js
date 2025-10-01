@@ -37,5 +37,17 @@ document.getElementById("user-input").addEventListener("input", function () {
   document.getElementById("accuracy").innerText = accuracy.toFixed(0);
   document.getElementById("speed").innerText = wpm.toFixed(0);
 });
+function highlightNextKey(nextChar) {
+  // Remove all highlights first
+  document.querySelectorAll('.key').forEach(k => k.classList.remove('highlight'));
+
+  if (!nextChar) return;
+
+  // Find key by data-normal attribute matching nextChar
+  const key = Array.from(document.querySelectorAll('.key')).find(k => k.dataset.normal === nextChar);
+  if (key) {
+    key.classList.add('highlight');
+  }
+}
 
 startGame();
