@@ -1,0 +1,23 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <title>Khmer Typing Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Khmer Typing Game</h1>
+    <div id="target-text"></div>
+    <textarea id="user-input" placeholder="Start typing here..."></textarea>
+    <div id="results">
+      <p>Speed: <span id="speed">0</span> WPM</p>
+      <p>Accuracy: <span id="accuracy">100</span>%</p>
+    </div>
+    <button onclick="startGame()">Restart</button>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
