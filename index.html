@@ -1,294 +1,68 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="km">
 <head>
-  <meta charset="UTF-8">
-  <title>Khmer Typing Game</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Khmer NiDA Keyboard Typing Game</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Khmer Typing Game</h1>
-    <div id="target-text"></div>
-    <textarea id="user-input" placeholder="Start typing here..."></textarea>
-    <div id="results">
-      <p>Speed: <span id="speed">0</span> WPM</p>
-      <p>Accuracy: <span id="accuracy">100</span>%</p>
-    </div>
-    <button onclick="startGame()">Restart</button>
-  </div>
-  <div id="keyboard">
+
+<h1>Khmer NiDA Keyboard Typing Game</h1>
+
+<textarea id="typing-area" spellcheck="false" autofocus placeholder="Type Khmer here..."></textarea>
+
+<div id="keyboard">
   <!-- Row 1 -->
   <div class="keyboard-row">
-    <div class="key" data-normal="១" data-shift="!" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">១</span>
-      <span class="shift-char">!</span>
-    </div>
-    <div class="key" data-normal="២" data-shift="@" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">២</span>
-      <span class="shift-char">@</span>
-    </div>
-    <div class="key" data-normal="៣" data-shift="#" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">៣</span>
-      <span class="shift-char">#</span>
-    </div>
-    <div class="key" data-normal="៤" data-shift="$" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">៤</span>
-      <span class="shift-char">$</span>
-    </div>
-    <div class="key" data-normal="៥" data-shift="%" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">៥</span>
-      <span class="shift-char">%</span>
-    </div>
-    <div class="key" data-normal="៦" data-shift="^" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">៦</span>
-      <span class="shift-char">^</span>
-    </div>
-    <div class="key" data-normal="៧" data-shift="&" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">៧</span>
-      <span class="shift-char">&amp;</span>
-    </div>
-    <div class="key" data-normal="៨" data-shift="*" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">៨</span>
-      <span class="shift-char">*</span>
-    </div>
-    <div class="key" data-normal="៩" data-shift="(" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">៩</span>
-      <span class="shift-char">(</span>
-    </div>
-    <div class="key" data-normal="០" data-shift=")" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">០</span>
-      <span class="shift-char">)</span>
-    </div>
+    <div class="key" data-normal="១" data-shift="!" data-alt=""> <span class="alt-char"></span><span class="normal-char">១</span><span class="shift-char">!</span></div>
+    <div class="key" data-normal="២" data-shift="@" data-alt=""> <span class="alt-char"></span><span class="normal-char">២</span><span class="shift-char">@</span></div>
+    <div class="key" data-normal="៣" data-shift="#" data-alt=""> <span class="alt-char"></span><span class="normal-char">៣</span><span class="shift-char">#</span></div>
+    <div class="key" data-normal="៤" data-shift="$" data-alt=""> <span class="alt-char"></span><span class="normal-char">៤</span><span class="shift-char">$</span></div>
+    <div class="key" data-normal="៥" data-shift="%" data-alt=""> <span class="alt-char"></span><span class="normal-char">៥</span><span class="shift-char">%</span></div>
+    <div class="key" data-normal="៦" data-shift="^" data-alt=""> <span class="alt-char"></span><span class="normal-char">៦</span><span class="shift-char">^</span></div>
+    <div class="key" data-normal="៧" data-shift="&amp;" data-alt=""> <span class="alt-char"></span><span class="normal-char">៧</span><span class="shift-char">&amp;</span></div>
+    <div class="key" data-normal="៨" data-shift="*" data-alt=""> <span class="alt-char"></span><span class="normal-char">៨</span><span class="shift-char">*</span></div>
+    <div class="key" data-normal="៩" data-shift="(" data-alt=""> <span class="alt-char"></span><span class="normal-char">៩</span><span class="shift-char">(</span></div>
+    <div class="key" data-normal="០" data-shift=")" data-alt=""> <span class="alt-char"></span><span class="normal-char">០</span><span class="shift-char">)</span></div>
+    <div class="key backspace" data-normal="Backspace" data-shift="" data-alt="">⌫</div>
   </div>
 
   <!-- Row 2 -->
   <div class="keyboard-row">
-    <div class="key" data-normal="ៗ" data-shift="~" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ៗ</span>
-      <span class="shift-char">~</span>
-    </div>
-    <div class="key" data-normal="្" data-shift="&lt;" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">្</span>
-      <span class="shift-char">&lt;</span>
-    </div>
-    <div class="key" data-normal="ះ" data-shift="&gt;" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ះ</span>
-      <span class="shift-char">&gt;</span>
-    </div>
-    <div class="key" data-normal="៖" data-shift="?" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">៖</span>
-      <span class="shift-char">?</span>
-    </div>
-    <div class="key" data-normal="។" data-shift="!" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">។</span>
-      <span class="shift-char">!</span>
-    </div>
-    <div class="key" data-normal="ឯ" data-shift="&quot;" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ឯ</span>
-      <span class="shift-char">"</span>
-    </div>
-    <div class="key" data-normal="ឲ" data-shift="#" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ឲ</span>
-      <span class="shift-char">#</span>
-    </div>
-    <div class="key" data-normal="ឳ" data-shift="$" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ឳ</span>
-      <span class="shift-char">$</span>
-    </div>
-    <div class="key" data-normal="៝" data-shift="%" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">៝</span>
-      <span class="shift-char">%</span>
-    </div>
-    <div class="key" data-normal="៛" data-shift="&amp;" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">៛</span>
-      <span class="shift-char">&amp;</span>
-    </div>
+    <div class="key" data-normal="ៗ" data-shift="~" data-alt=""> <span class="alt-char"></span><span class="normal-char">ៗ</span><span class="shift-char">~</span></div>
+    <div class="key" data-normal="្" data-shift="&lt;" data-alt=""> <span class="alt-char"></span><span class="normal-char">្</span><span class="shift-char">&lt;</span></div>
+    <div class="key" data-normal="ង" data-shift=">" data-alt=""> <span class="alt-char"></span><span class="normal-char">ង</span><span class="shift-char">&gt;</span></div>
+    <div class="key" data-normal="ច" data-shift="?" data-alt=""> <span class="alt-char"></span><span class="normal-char">ច</span><span class="shift-char">?</span></div>
+    <div class="key" data-normal="ឆ" data-shift=":" data-alt=""> <span class="alt-char"></span><span class="normal-char">ឆ</span><span class="shift-char">:</span></div>
+    <div class="key" data-normal="ជ" data-shift="\"" data-alt=""> <span class="alt-char"></span><span class="normal-char">ជ</span><span class="shift-char">"</span></div>
+    <div class="key" data-normal="ញ" data-shift="'" data-alt=""> <span class="alt-char"></span><span class="normal-char">ញ</span><span class="shift-char">'</span></div>
+    <div class="key" data-normal="ដ" data-shift="-" data-alt=""> <span class="alt-char"></span><span class="normal-char">ដ</span><span class="shift-char">-</span></div>
+    <div class="key" data-normal="ឋ" data-shift="_" data-alt=""> <span class="alt-char"></span><span class="normal-char">ឋ</span><span class="shift-char">_</span></div>
+    <div class="key" data-normal="ឌ" data-shift="=" data-alt=""> <span class="alt-char"></span><span class="normal-char">ឌ</span><span class="shift-char">=</span></div>
+    <div class="key enter" data-normal="Enter" data-shift="" data-alt="">⏎</div>
   </div>
 
   <!-- Row 3 -->
   <div class="keyboard-row">
-    <div class="key" data-normal="ក" data-shift="Q" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ក</span>
-      <span class="shift-char">Q</span>
-    </div>
-    <div class="key" data-normal="ខ" data-shift="W" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ខ</span>
-      <span class="shift-char">W</span>
-    </div>
-    <div class="key" data-normal="គ" data-shift="E" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">គ</span>
-      <span class="shift-char">E</span>
-    </div>
-    <div class="key" data-normal="ឃ" data-shift="R" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ឃ</span>
-      <span class="shift-char">R</span>
-    </div>
-    <div class="key" data-normal="ង" data-shift="T" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ង</span>
-      <span class="shift-char">T</span>
-    </div>
-    <div class="key" data-normal="ច" data-shift="Y" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ច</span>
-      <span class="shift-char">Y</span>
-    </div>
-    <div class="key" data-normal="ឆ" data-shift="U" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ឆ</span>
-      <span class="shift-char">U</span>
-    </div>
-    <div class="key" data-normal="ជ" data-shift="I" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ជ</span>
-      <span class="shift-char">I</span>
-    </div>
-    <div class="key" data-normal="ឈ" data-shift="O" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ឈ</span>
-      <span class="shift-char">O</span>
-    </div>
-    <div class="key" data-normal="ញ" data-shift="P" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ញ</span>
-      <span class="shift-char">P</span>
-    </div>
+    <div class="key" data-normal="ត" data-shift="{" data-alt=""> <span class="alt-char"></span><span class="normal-char">ត</span><span class="shift-char">{</span></div>
+    <div class="key" data-normal="ថ" data-shift="}" data-alt=""> <span class="alt-char"></span><span class="normal-char">ថ</span><span class="shift-char">}</span></div>
+    <div class="key" data-normal="ថ" data-shift="|" data-alt=""> <span class="alt-char"></span><span class="normal-char">ថ</span><span class="shift-char">|</span></div>
+    <div class="key" data-normal="ន" data-shift=";" data-alt=""> <span class="alt-char"></span><span class="normal-char">ន</span><span class="shift-char">;</span></div>
+    <div class="key" data-normal="ប" data-shift=":" data-alt=""> <span class="alt-char"></span><span class="normal-char">ប</span><span class="shift-char">:</span></div>
+    <div class="key" data-normal="ផ" data-shift="," data-alt=""> <span class="alt-char"></span><span class="normal-char">ផ</span><span class="shift-char">,</span></div>
+    <div class="key" data-normal="ព" data-shift="." data-alt=""> <span class="alt-char"></span><span class="normal-char">ព</span><span class="shift-char">.</span></div>
+    <div class="key" data-normal="ភ" data-shift="/" data-alt=""> <span class="alt-char"></span><span class="normal-char">ភ</span><span class="shift-char">/</span></div>
+    <div class="key" data-normal="ហ" data-shift="?" data-alt=""> <span class="alt-char"></span><span class="normal-char">ហ</span><span class="shift-char">?</span></div>
+    <div class="key" data-normal="អ" data-shift="~" data-alt=""> <span class="alt-char"></span><span class="normal-char">អ</span><span class="shift-char">~</span></div>
   </div>
 
   <!-- Row 4 -->
   <div class="keyboard-row">
-    <div class="key" data-normal="ដ" data-shift="A" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ដ</span>
-      <span class="shift-char">A</span>
-    </div>
-    <div class="key" data-normal="ឋ" data-shift="S" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ឋ</span>
-      <span class="shift-char">S</span>
-    </div>
-    <div class="key" data-normal="ឌ" data-shift="D" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ឌ</span>
-      <span class="shift-char">D</span>
-    </div>
-    <div class="key" data-normal="ឍ" data-shift="F" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ឍ</span>
-      <span class="shift-char">F</span>
-    </div>
-    <div class="key" data-normal="ណ" data-shift="G" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ណ</span>
-      <span class="shift-char">G</span>
-    </div>
-    <div class="key" data-normal="ត" data-shift="H" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ត</span>
-      <span class="shift-char">H</span>
-    </div>
-    <div class="key" data-normal="ថ" data-shift="J" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ថ</span>
-      <span class="shift-char">J</span>
-    </div>
-    <div class="key" data-normal="ទ" data-shift="K" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ទ</span>
-      <span class="shift-char">K</span>
-    </div>
-    <div class="key" data-normal="ប" data-shift="L" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ប</span>
-      <span class="shift-char">L</span>
-    </div>
-    <div class="key" data-normal="ផ" data-shift=":" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ផ</span>
-      <span class="shift-char">:</span>
-    </div>
-  </div>
-
-  <!-- Row 5 -->
-  <div class="keyboard-row">
-    <div class="key" data-normal="ភ" data-shift="Z" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ភ</span>
-      <span class="shift-char">Z</span>
-    </div>
-    <div class="key" data-normal="ម" data-shift="X" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ម</span>
-      <span class="shift-char">X</span>
-    </div>
-    <div class="key" data-normal="យ" data-shift="C" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">យ</span>
-      <span class="shift-char">C</span>
-    </div>
-    <div class="key" data-normal="រ" data-shift="V" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">រ</span>
-      <span class="shift-char">V</span>
-    </div>
-    <div class="key" data-normal="ល" data-shift="B" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ល</span>
-      <span class="shift-char">B</span>
-    </div>
-    <div class="key" data-normal="វ" data-shift="N" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">វ</span>
-      <span class="shift-char">N</span>
-    </div>
-    <div class="key" data-normal="ឝ" data-shift="M" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ឝ</span>
-      <span class="shift-char">M</span>
-    </div>
-    <div class="key" data-normal="ឞ" data-shift="&lt;" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ឞ</span>
-      <span class="shift-char">&lt;</span>
-    </div>
-    <div class="key" data-normal="ស" data-shift="&gt;" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">ស</span>
-      <span class="shift-char">&gt;</span>
-    </div>
-    <div class="key" data-normal="អ" data-shift="?" data-alt="">
-      <span class="alt-char"></span>
-      <span class="normal-char">អ</span>
-      <span class="shift-char">?</span>
-    </div>
+    <div class="key space" data-normal=" " data-shift="" data-alt="">Space</div>
   </div>
 </div>
-  <script src="app.js"></script>
+
+<script src="app.js"></script>
 </body>
 </html>
